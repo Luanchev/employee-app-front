@@ -1,0 +1,77 @@
+<h2 class="mb-5">Nuevo empleado</h2>
+<div class="row row-cols-3 justify-content-center">
+  <form [formGroup]="formEmployee" (ngSubmit)="create()">
+
+    <div class="mb-3">
+      <label for="name">Nombre <span class="text-danger">*</span></label>
+      <input id="name" type="text" placeholder="Nombre" class="form-control"
+        [class.is-invalid]="formEmployee.get('name')?.invalid && formEmployee.get('name')?.touched"
+        formControlName="name">
+      <div class="invalid-feedback" *ngIf="formEmployee.get('name')?.invalid && formEmployee.get('name')?.touched">
+        {{ getErrorMessage('name') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="surname">Apellido <span class="text-danger">*</span></label>
+      <input id="surname" type="text" placeholder="Apellido" class="form-control"
+        [class.is-invalid]="formEmployee.get('surname')?.invalid && formEmployee.get('surname')?.touched"
+        formControlName="surname">
+      <div class="invalid-feedback"
+        *ngIf="formEmployee.get('surname')?.invalid && formEmployee.get('surname')?.touched">
+        {{ getErrorMessage('surname') }}
+      </div>
+    </div>
+
+    <!-- CÉDULA -->
+    <div class="mb-3">
+      <label for="cedula">Cédula <span class="text-danger">*</span></label>
+      <input id="cedula" type="text" placeholder="1234567890" class="form-control"
+        [class.is-invalid]="formEmployee.get('cedula')?.invalid && formEmployee.get('cedula')?.touched"
+        formControlName="cedula" maxlength="10">
+      <div class="invalid-feedback" *ngIf="formEmployee.get('cedula')?.invalid && formEmployee.get('cedula')?.touched">
+        {{ getErrorMessage('cedula') }}
+      </div>
+    </div>
+
+    <!-- DIRECCIÓN -->
+    <div class="mb-3">
+      <label for="address">Dirección <span class="text-danger">*</span></label>
+      <input id="address" type="text" placeholder="Calle 123 #45-67" class="form-control"
+        [class.is-invalid]="formEmployee.get('address')?.invalid && formEmployee.get('address')?.touched"
+        formControlName="address">
+      <div class="invalid-feedback"
+        *ngIf="formEmployee.get('address')?.invalid && formEmployee.get('address')?.touched">
+        {{ getErrorMessage('address') }}
+      </div>
+    </div>
+
+    <!-- TELÉFONO -->
+    <div class="mb-3">
+      <label for="telephone">Teléfono <span class="text-danger">*</span></label>
+      <input id="telephone" type="text" placeholder="3001234567" class="form-control"
+        [class.is-invalid]="formEmployee.get('telephone')?.invalid && formEmployee.get('telephone')?.touched"
+        formControlName="telephone" maxlength="10">
+      <div class="invalid-feedback"
+        *ngIf="formEmployee.get('telephone')?.invalid && formEmployee.get('telephone')?.touched">
+        {{ getErrorMessage('telephone') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="photo">Foto</label>
+      <input id="photo" type="text" placeholder="photo" class="form-control" formControlName="photo">
+    </div>
+
+    <div class="text-end">
+      <button type="button" class="btn btn-primary" routerLink="/">
+        Cancelar
+      </button>
+
+      <button type="submit" class="btn btn-primary ms-2">
+        Crear empleado
+      </button>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,63 @@
+<h2 class="mb-5">Registro de empleados</h2>
+
+<div class="d-flex justify-content-between mb-3">
+  <!-- Campo de búsqueda por cédula -->
+  <div class="me-2 flex-grow-1">
+    <input type="text" class="form-control" placeholder="Buscar por cédula" [formControl]="searchCedulaControl" />
+  </div>
+
+  <div class="text-end">
+    <button class="btn btn-primary" routerLink="/new">
+      Nuevo empleado
+    </button>
+  </div>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>idEmpleado</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Cedula</th>
+      <th>Direccion</th>
+      <th>Telefono</th>
+      <th>Foto</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of filteredEmployees" appHighlightHover>
+        <td>{{employee.id}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.surname}}</td>
+        <td>{{employee.cedula }}</td>
+        <td>{{employee.address}}</td>
+        <td>{{employee.telephone}}</td>
+        <td>
+          <img *ngIf="employee.photo" [src]="employee.photo" alt="Foto del empleado" width="50">
+        </td>
+
+        <td>
+          <button 
+            class="btn btn-sm" 
+            [ngClass]="employee.active ? 'btn-success' : 'btn-secondary'"
+            (click)="toggleActive(employee)">
+            {{ employee.active | employeeStatus }}
+          </button>
+        </td>
+
+        <td class=" text-end">
+          <button class="btn btn-primary" [routerLink]="[employee.id+edit]">
+            Editar
+          </button>
+
+        </td>
+    </tr>
+    <tr *ngIf="filteredEmployees.length === 0">
+      <td colspan="8" class="text-center">No se encontraron empleados.</td> <!-- Mensaje cuando no hay resultados -->
+    </tr>
+
+  </tbody>
+</table>
