@@ -25,7 +25,7 @@ export const httpConfigInterceptor: HttpInterceptorFn = (req, next) => {
     // LOG: Respuesta exitosa
     tap(response => {
       console.log('═══════════════════════════════════════');
-      console.log('✅ HTTP RESPONSE SUCCESS');
+      console.log('HTTP RESPONSE SUCCESS');
       console.log('Status: OK');
       console.log('URL:', req.url);
       console.log('═══════════════════════════════════════');
