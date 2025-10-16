@@ -82,7 +82,7 @@ export default class ListaEmployeesComponent implements OnInit, OnDestroy  {
       next: (employee) => {
         console.log('NOTIFICACIÓN RECIBIDA: Estado cambiado', employee);
         const status = employee.active ? 'activado' : 'desactivado';
-        console.log(`🔄 Empleado ${employee.name} ${status}`);
+        console.log(`Empleado ${employee.name} ${status}`);
         // El estado ya se actualiza localmente en toggleActive()
       },
       error: (error) => {
