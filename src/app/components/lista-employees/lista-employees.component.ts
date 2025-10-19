@@ -80,9 +80,9 @@ export default class ListaEmployeesComponent implements OnInit, OnDestroy  {
     // Escuchar cuando cambia el estado de un empleado
     const statusSub = this.employeeService.employeeStatusChanged$.subscribe({
       next: (employee) => {
-        console.log('🔔 NOTIFICACIÓN RECIBIDA: Estado cambiado', employee);
+        console.log('NOTIFICACIÓN RECIBIDA: Estado cambiado', employee);
         const status = employee.active ? 'activado' : 'desactivado';
-        console.log(`🔄 Empleado ${employee.name} ${status}`);
+        console.log(`Empleado ${employee.name} ${status}`);
         // El estado ya se actualiza localmente en toggleActive()
       },
       error: (error) => {
@@ -112,11 +112,11 @@ export default class ListaEmployeesComponent implements OnInit, OnDestroy  {
     if (cedula) {
       this.employeeService.getbyCedula(cedula).subscribe({
         next: (response: any) => {
-          console.log('🔍 Búsqueda por cédula:', cedula);
+          console.log('Búsqueda por cédula:', cedula);
           const filteredEmployee = response.data;
           if (filteredEmployee) {
             this.filteredEmployees = [filteredEmployee];
-            console.log('✅ Empleado encontrado:', filteredEmployee.name);
+            console.log('Empleado encontrado:', filteredEmployee.name);
           } else {
             this.filteredEmployees = [];
             console.log('No se encontró empleado con esa cédula');

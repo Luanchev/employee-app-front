@@ -43,7 +43,6 @@ export default class EmployeesFormEditarComponent implements OnInit, OnDestroy {
     this.id = this.route.snapshot.paramMap.get('id');
 
     this.employeeService.list().subscribe((employees:any)=>{
-      this.employees = this.employees;
       console.log(employees);
       this.employees = employees;
       this.employee = this.employees.filter(employee => employee.id == this.id);
@@ -63,20 +62,22 @@ export default class EmployeesFormEditarComponent implements OnInit, OnDestroy {
     console.log('Hora de destrucción:', new Date().toLocaleTimeString());
   }
 
-  update(){
-    const employee={
-      "name": this.formEmployee.value.name,
-      "surname": this.formEmployee.value.surname,
-      "cedula": this.formEmployee.value.cedula,
-      "address": this.formEmployee.value.address,
-      "telephone": this.formEmployee.value.telephone,
-      "photo": this.formEmployee.value.photo
-
-    }
-    this.formEmployee.value;
-    this.employeeService.update(this.id, employee).subscribe(()=>{
-      this.router.navigate(['/']);
-    });
+  update() {
+  if (this.formEmployee.invalid) {
+    this.formEmployee.markAllAsTouched();
+    return;
   }
+
+  const employee = this.formEmployee.value;
+
+  this.employeeService.update(Number(this.id), employee).subscribe((res) => {
+    if (res) {
+      console.log('Empleado actualizado exitosamente:', res);
+      this.router.navigate(['/']);
+    } else {
+      console.warn('Error: No se pudo actualizar el empleado');
+    }
+  });
+}
 
 }
