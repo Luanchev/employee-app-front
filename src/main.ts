@@ -9,7 +9,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([httpConfigInterceptor]) // ⬅️ AGREGAR INTERCEPTOR
+      withInterceptors([httpConfigInterceptor]) 
     )
   ]
 }).catch(err => console.error(err));
